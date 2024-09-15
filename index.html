@@ -1,116 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scroll of True Facts</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
-        nav {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            background-color: #333;
         }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
+
+        h1 {
+            margin-top: 20px;
+            font-size: 36px;
+            color: #333;
         }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        section {
-            padding: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .content img {
-            max-width: 100%;
-            height: auto;
-        }
-        .contact-form {
-            max-width: 600px;
-            margin: auto;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
+
+        #facts-container {
+            max-width: 800px;
+            margin: 20px;
             padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .contact-form input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+
+        .fact {
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
         }
-        .contact-form input[type="submit"]:hover {
-            background-color: #45a049;
+
+        .fact:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#hobbies">Hobbies</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section id="home">
-        <h2>Home</h2>
-        <p>This is the home section of my website.</p>
-        <div class="content">
-            <img src="https://via.placeholder.com/800x400" alt="Placeholder Image">
-        </div>
-    </section>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Here is some information about me.</p>
-    </section>
-    <section id="hobbies">
-        <h2>My Hobbies</h2>
-        <ul>
-            <li>Reading</li>
-            <li>Traveling</li>
-            <li>Coding</li>
-        </ul>
-    </section>
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-form">
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 My First Website. All rights reserved.</p>
-    </footer>
+    <h1>Infinite Scroll of True Facts</h1>
+    <div id="facts-container"></div>
+
+    <script>
+        // List of quirky, true facts
+        const facts = [
+            "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
+            "Octopuses have three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body.",
+            "Bananas are berries, but strawberries aren’t.",
+            "A day on Venus is longer than a year on Venus.",
+            "Sloths can hold their breath longer than dolphins can.",
+            "Wombat poop is cube-shaped to prevent it from rolling away.",
+            "Sharks existed before trees. Sharks are over 400 million years old, while trees appeared around 350 million years ago.",
+            "A group of flamingos is called a 'flamboyance'.",
+            "The Eiffel Tower can be 15 cm taller during the summer due to the expansion of iron in the heat.",
+            "Cows have best friends and can become stressed when separated from them.",
+            "Butterflies can taste with their feet.",
+            "There's a species of jellyfish that is biologically immortal. It can revert back to its juvenile state after reaching adulthood.",
+            "An ostrich's eye is bigger than its brain.",
+            "Humans share 60% of their DNA with bananas.",
+            "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid of Giza.",
+            "Sea otters hold hands when they sleep to keep from drifting apart."
+        ];
+
+        const factsContainer = document.getElementById('facts-container');
+
+        // Function to load new facts
+        function loadFacts() {
+            for (let i = 0; i < 5; i++) {
+                let randomFactIndex = Math.floor(Math.random() * facts.length);
+                let newFact = document.createElement('div');
+                newFact.classList.add('fact');
+                newFact.textContent = facts[randomFactIndex];
+                factsContainer.appendChild(newFact);
+            }
+        }
+
+        // Load initial facts
+        loadFacts();
+
+        // Infinite scroll functionality
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadFacts();  // Load more facts when near the bottom of the page
+            }
+        });
+    </script>
 </body>
 </html>
