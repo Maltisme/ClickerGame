@@ -1,132 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Scroll of True Facts</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Om mig - Din Navn</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        h1 {
-            margin-top: 20px;
-            font-size: 36px;
+            background-color: #f4f4f4;
             color: #333;
         }
-
-        #facts-container {
-            max-width: 800px;
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
             margin: 20px;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-
-        .fact {
-            font-size: 18px;
-            line-height: 1.6;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
         }
-
-        .fact:last-child {
-            border-bottom: none;
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <h1>Infinite Scroll of True Facts</h1>
-    <div id="facts-container"></div>
 
-    <script>
-        // List of quirky, true facts
-        const facts = [
-            "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
-            "Octopuses have three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body.",
-            "Bananas are berries, but strawberries aren’t.",
-            "A day on Venus is longer than a year on Venus.",
-            "Sloths can hold their breath longer than dolphins can.",
-            "Wombat poop is cube-shaped to prevent it from rolling away.",
-            "Sharks existed before trees. Sharks are over 400 million years old, while trees appeared around 350 million years ago.",
-            "A group of flamingos is called a 'flamboyance'.",
-            "A shrimp’s heart is located in its head.",
-            "The unicorn is the national animal of Scotland.",
-            "A bolt of lightning contains enough energy to toast 100,000 slices of bread.",
-            "Sea otters hold hands while they sleep to avoid drifting apart.",
-            "Polar bear skin is black, not white.",
-            "Cows have best friends and get stressed when separated.",
-            "The Eiffel Tower can grow up to 6 inches taller during summer.",
-            "Jellyfish are biologically immortal.",
-            "Horses have the largest eyes of any land mammal.",
-            "A snail can sleep for three years.",
-            "Penguins propose to their mates with a pebble.",
-            "Tigers have striped skin, not just striped fur.",
-            "The Eiffel Tower was once yellow.",
-            "Dolphins sleep with one eye open.",
-            "Sharks have no bones; their skeletons are made of cartilage.",
-            "Bees can fly higher than Mount Everest.",
-            "The human nose can detect over a trillion different scents.",
-            "Cleopatra lived closer in time to the moon landing than to the construction of the Great Pyramid.",
-            "Sloths can hold their breath longer than dolphins can.",
-            "You burn more calories sleeping than watching TV.",
-            "Platypuses don’t have stomachs.",
-            "Owls can rotate their heads 270 degrees.",
-            "A single strand of spaghetti is called a spaghetto.",
-            "Cows have four stomachs.",
-            "Humans are the only animals that blush.",
-            "The original name for Google was “BackRub.”",
-            "The inventor of the frisbee was turned into a frisbee after he died.",
-            "The shortest war in history lasted 38 minutes.",
-            "The longest hiccuping spree lasted 68 years.",
-            "Elephants are the only animals that can’t jump.",
-            "Cleopatra was alive closer to the moon landing than the building of the pyramids.",
-            "The shortest complete sentence in the English language is “Go.”",
-            "Cats can’t taste sweet things.",
-            "There are more fake flamingos in the world than real ones."
-        ];
+    <!-- Header -->
+    <header>
+        <h1>Velkommen til min hjemmeside!</h1>
+        <p>Mit navn er [Dit Navn]</p>
+    </header>
 
-        const factsContainer = document.getElementById('facts-container');
-        let usedFacts = new Set();  // Set to track used facts
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">Om mig</a>
+        <a href="#skills">Mine Færdigheder</a>
+        <a href="#projects">Projekter</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
 
-        // Function to load new facts
-        function loadFacts() {
-            let availableFacts = facts.filter(fact => !usedFacts.has(fact));
-            
-            if (availableFacts.length < 5) {  // Reset if we've used almost all the facts
-                usedFacts.clear();
-                availableFacts = facts;
-            }
+    <!-- About Section -->
+    <section id="about">
+        <h2>Om mig</h2>
+        <p>Hej! Mit navn er [Dit Navn], og jeg er [din profession eller interesser]. Jeg er passioneret omkring [interesser eller fagområder], og jeg elsker at arbejde med projekter, der involverer [beskriv kort noget, du kan lide at lave].</p>
+    </section>
 
-            for (let i = 0; i < 5; i++) {
-                let randomFactIndex = Math.floor(Math.random() * availableFacts.length);
-                let randomFact = availableFacts[randomFactIndex];
-                usedFacts.add(randomFact);
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Mine Færdigheder</h2>
+        <ul>
+            <li>Færdighed 1</li>
+            <li>Færdighed 2</li>
+            <li>Færdighed 3</li>
+            <li>Færdighed 4</li>
+        </ul>
+    </section>
 
-                let newFact = document.createElement('div');
-                newFact.classList.add('fact');
-                newFact.textContent = randomFact;
-                factsContainer.appendChild(newFact);
-            }
-        }
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projekter</h2>
+        <p>Her er nogle af mine seneste projekter:</p>
+        <ul>
+            <li><strong>Projekt 1</strong> - Beskrivelse af projektet og hvad det handler om.</li>
+            <li><strong>Projekt 2</strong> - Beskrivelse af projektet og hvad det handler om.</li>
+            <li><strong>Projekt 3</strong> - Beskrivelse af projektet og hvad det handler om.</li>
+        </ul>
+    </section>
 
-        // Load initial facts
-        loadFacts();
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>Du kan kontakte mig via e-mail på: <a href="mailto:dinemail@eksempel.dk">dinemail@eksempel.dk</a></p>
+    </section>
 
-        // Infinite scroll functionality
-        window.addEventListener('scroll', () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                loadFacts();  // Load more facts when near the bottom of the page
-            }
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © [Dit Navn] 2024</p>
+    </footer>
+
 </body>
 </html>
